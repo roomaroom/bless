@@ -1,0 +1,40 @@
+.tab-pane.active.profile-section#personal
+  %h2 Personal Information
+  %br
+  %br
+  = render 'after_register/personal', f: f
+  .row
+    .col-sm-6
+      .form-group
+        %label.location-label Current Location
+        %abbr.location-label{title: "required"} *
+        = tag 'p', id: 'brother-locations', class: 'map-wraps map_container map-movable brothers-markers', data: { markers: @marker, styles: map_styles, zoom: 10, movable: true}
+        .well.auto-location
+          %label Auto-location is turned:
+          %strong.locate-status
+            - if @brother.auto_location
+              On
+            - else
+              %span.red-font Off
+          .pull-right
+            %span.btn.btn-default.btn-sm.auto-locate Auto-Locate
+          = f.hidden_field :auto_location
+          %p
+          %span.help-block.blue
+            %strong
+              If your location is not correct, please click on the map to correct it. Brothers will be reaching out to you based on your location.
+    .col-sm-6
+      .row
+        .col-xs-4
+          = image_tag profile_photo, id: "brother_profile_photo_preview", class: 'img-circle profile-photo img-responsive'
+        .col-sm-8
+          = f.input :profile_photo, as: :file, required: true, input_html: { accept: "image/*" }
+          %span.help-block
+            %small.blue
+              %strong Your profile photo must be a headshot of you. No group, cartoon, or distant photos, please. Your Brothers want to know what you look like!
+          .progress.progress-striped.hidden
+            .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", role: "progressbar", style: "width: 0%"}
+              .percent 100%
+          = f.hidden_field :remote_profile_photo_url
+          = f.hidden_field :last_location, value: f.object.last_location_parametrized
+

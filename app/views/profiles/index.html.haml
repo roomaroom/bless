@@ -1,0 +1,28 @@
+%h1 Listing medics
+//= text_field_tag "search", "", :autocomplete => "off", :id => "search"
+/ = form_tag medics_path, method: :get, remote: true, class: 'form-horizontal ui-widget' do
+/   .input-group
+/     .col-sm-6= search_field_tag 'search', nil, placeholder: 'Search for Hangouts', required: true, class: 'form-control'
+/     .col-sm-6= search_field_tag 'location', nil, placeholder: 'Search for Location', class: 'form-control'
+/     %span.input-group-btn
+/       %button.btn.btn-default Search
+/ %ul#contact-results
+%table
+  %tr
+    %th Title
+    %th First name
+    %th Last name
+    %th Region
+    %th City
+    %th Category
+    %th
+    %th
+    %th
+  .medic
+    - @profiles.each do |profile|
+      %tr
+        %td= profile.first_name
+        %td= profile.last_name
+        %td= link_to "Add Friend", friends_path(friend_id: profile), :method => :post 
+%br
+= paginate @profiles

@@ -1,0 +1,7 @@
+.row.profile
+  .col-lg-7.col-sm-6
+    .row
+      .col-lg-6.col-sm-6
+        = image_tag @profile.photos.first.image_url(:large), class: 'img-circle profile-photo img-responsive'
+      .col-lg-6.col-sm-6
+        = @profile.full_name

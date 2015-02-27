@@ -1,0 +1,21 @@
+- content_for :body_class, "onboarding onboarding-signup"
+
+.container.content.sign-up
+  .row
+    .col-md-8.col-md-push-2
+      .well
+        .progress
+          .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "40", :role => "progressbar", :style => "width: 40%"}
+            %span.sr-only 40% Complete
+
+        %h2 Contact Information
+        %p Where can we send you Brotherhood Swag and other packages? This is NOT shared with other Brothers.
+        %hr/
+        = render layout: 'form' do |f|
+          /= render 'contact', f: f
+          %ul.pager
+            %li.pull-left
+              = f.submit "Previous", name: "back_button", class: 'btn btn-default back-button'
+            %li.pull-right
+              = f.submit "Continue", class: 'btn btn-default continue-button'
+

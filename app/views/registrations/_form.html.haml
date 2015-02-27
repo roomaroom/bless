@@ -1,0 +1,27 @@
+= simple_nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: true, method: :put, class: 'form-vertical edit_brother', multipart: true }, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } }) do |f|
+  = render 'form/alert_message', f: f, resourse: resource
+  %ul.pager
+    %li.pull-left
+      = f.submit 'Save Changes', class: 'btn btn-primary btn-lg'
+  %ul.nav.nav-tabs
+    %li.active
+      = link_to 'Personal Information', '#personal', data: { toggle: 'tab' }
+    %li
+      = link_to 'Contact Information', '#contact', data: { toggle: 'tab' }
+    %li
+      = link_to 'Social', '#social', data: { toggle: 'tab' }
+    %li
+      = link_to 'Life Outside of Business', '#passions', data: { toggle: 'tab' }
+    %li
+      = link_to 'Business Projects', '#projects', data: { toggle: 'tab' }
+
+
+  .tab-content
+    = render 'personal', f: f
+    = render 'contact',  f: f
+    = render 'social',   f: f
+    = render 'passions',  f: f
+    = render 'projects', f: f
+
+
+    = f.submit 'Save Changes', class: 'btn btn-primary btn-lg'

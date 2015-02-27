@@ -1,0 +1,29 @@
+.panel-group
+  .projects_fields
+    = f.fields_for :cabinets, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } } do |p|
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            = p.object.name.present? ? p.object.name : 'New Project'
+        .panel-collapse{ id: "collapse-#{p.object_id}", class: ('in' unless p.object.id ) }
+          .panel-body
+            .row
+              .col-sm-6
+                = p.input :name, label: 'Business Name', placeholder: "e.g. Virgin Galactic", error: false
+              .col-sm-6
+                = p.input :address, placeholder: "e.g. virgingalactic.com"
+                = p.input :city, hint: "What is the project's purpose? What makes it unique?"
+              .col-sm-6
+
+                = p.input :state, hint: "What is the project's purpose? What makes it unique?"
+
+            - if p.object.name?
+              = p.link_to_remove 'Remove This Project', data: { confirm: "Are you sure you want to delete this #{p.object.name}?"},
+                                  class: 'btn btn-text btn-text-danger btn-sm'
+            - else
+              = p.link_to_remove 'Remove This Project', data: { confirm: 'Are you sure you want to delete this project?' },
+                                  class: 'btn btn-text btn-text-danger btn-sm'
+            .pull-right
+              = f.submit "Add This Project", class: 'btn btn-primary'
+= f.link_to_add 'Add a New Project', :cabinets, class: 'btn btn-primary'
+

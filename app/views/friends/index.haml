@@ -1,0 +1,10 @@
+%h1 Friends#index
+%p Find me in app/views/friends/show.html.haml
+.medic
+  - @friends.each do |friend|
+    %tr
+      %td= friend.first_name
+      %td= friend.last_name
+%br
+= @friends
+/= paginate @friends

@@ -1,0 +1,8 @@
+- content_for :body_class, "onboarding onboarding-welcome"
+
+.container.content
+  .row
+    .col-md-8.col-md-push-2.text-center
+      %img{src: "http://placehold.it/800x500&text=Video", class: "img-responsive welcome-video"}/
+      %a.btn.btn-info.btn-lg{href: next_wizard_path}
+        Start Your Application

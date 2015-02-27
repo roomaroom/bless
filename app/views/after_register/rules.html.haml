@@ -1,0 +1,24 @@
+- content_for :body_class, "onboarding onboarding-rules"
+
+.container.content.sign-up
+  .row
+    .col-md-8.col-md-push-2
+      .well
+        .progress
+          .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "95", :role => "progressbar", :style => "width: 95%"}
+            %span.sr-only 95% Complete
+        %img{src: "http://placehold.it/800x500&text=Video", class: "img-responsive"}/
+        .row
+          .col-xs-8.col-sm-6.col-sm-push-3.col-xs-push-2
+            = render layout: 'form' do |f|
+              /= f.input :terms_of_service, input_html: { class: '' }, as: :boolean,  label: ("I understand and agree to the #{link_to 'Terms & Conditions', 'https://s3.amazonaws.com/brotherhoodnet/Brotherhood-Guidelines.pdf', target: '_blank'}").html_safe
+              %i
+              = f.submit "Let Me In!", class: 'delay btn btn-info btn-lg btn-block fa fa-primary'
+              %p.text-center
+                %em Enter after watching the video
+        .clearfix
+        %ul.pager
+          %li.pull-left
+            = link_to "Previous", previous_wizard_path
+
+

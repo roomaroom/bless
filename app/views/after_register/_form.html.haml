@@ -1,0 +1,4 @@
+= simple_form_for @profile, url: wizard_path, html: { novalidate: true },defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } } do |f|
+  /= render 'form/alert_message', f: f, resourse: @medic
+  = yield f
+

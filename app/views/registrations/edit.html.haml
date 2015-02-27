@@ -1,0 +1,15 @@
+- add_breadcrumb :index, root_path
+- add_breadcrumb 'Edit Profile'
+
+.title_wrap.edit-header
+  .container
+    .row
+      .col-xs-12.leading-block
+        %h1 Edit Profile
+
+.container.content
+  %p The more information you put into your profile, the more you’ll get out of the community.
+  %p
+    = link_to "View My Profile", current_brother, class: 'view-profile'
+  %hr
+  = render 'form'

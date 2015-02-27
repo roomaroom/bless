@@ -1,0 +1,123 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title DevOOPS
+    %meta{:content => "description", :name => "description"}/
+    %meta{:content => "DevOOPS", :name => "author"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    / %link{:href => "plugins/bootstrap/bootstrap.css", :rel => "stylesheet"}/
+    / %link{:href => "plugins/jquery-ui/jquery-ui.min.css", :rel => "stylesheet"}/
+    %link{:href => "http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", :rel => "stylesheet"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Righteous", :rel => "stylesheet", :type => "text/css"}/
+    / %link{:href => "plugins/fancybox/jquery.fancybox.css", :rel => "stylesheet"}/
+    / %link{:href => "plugins/fullcalendar/fullcalendar.css", :rel => "stylesheet"}/
+    / %link{:href => "plugins/xcharts/xcharts.min.css", :rel => "stylesheet"}/
+    / %link{:href => "plugins/select2/select2.css", :rel => "stylesheet"}/
+    / %link{:href => "css/style.css", :rel => "stylesheet"}/
+    / HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+      <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+  %body
+    / Start Header
+    #screensaver
+      %canvas#canvas
+      %i#screen_unlock.fa.fa-lock
+    #modalbox
+      .devoops-modal
+        .devoops-modal-header
+          .modal-header-name
+            %span Basic table
+          .box-icons
+            %a.close-link
+              %i.fa.fa-times
+        .devoops-modal-inner
+        .devoops-modal-bottom
+    %header.navbar
+      .container-fluid.expanded-panel
+        .row
+          #logo.col-xs-12.col-sm-2
+            %a{:href => "index.html"} DevOOPS
+          #top-panel.col-xs-12.col-sm-10
+            .row
+              .col-xs-8.col-sm-4
+                %a.show-sidebar{:href => "#"}
+                  %i.fa.fa-bars
+                #search
+                  %input{:placeholder => "search", :type => "text"}/
+                  %i.fa.fa-search
+              .col-xs-4.col-sm-8.top-panel-right
+                %ul.nav.navbar-nav.pull-right.panel-menu
+                  %li.hidden-xs
+                    %a.modal-link{:href => "index.html"}
+                      %i.fa.fa-bell
+                      %span.badge 7
+                  %li.hidden-xs
+                    %a.ajax-link{:href => "ajax/calendar.html"}
+                      %i.fa.fa-calendar
+                      %span.badge 7
+                  %li.hidden-xs
+                    %a.ajax-link{:href => "ajax/page_messages.html"}
+                      %i.fa.fa-envelope
+                      %span.badge 7
+                  %li.dropdown
+                    %a.dropdown-toggle.account{"data-toggle" => "dropdown", :href => "#"}
+                      .avatar
+                        %img.img-rounded{:alt => "avatar", :src => "/images/img/avatar.jpg"}/
+                      %i.fa.fa-angle-down.pull-right
+                      .user-mini.pull-right
+                        %span.welcome Welcome,
+                        %span Jane Devoops
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => "#"}
+                          %i.fa.fa-user
+                          %span Profile
+                      %li
+                        %a.ajax-link{:href => "ajax/page_messages.html"}
+                          %i.fa.fa-envelope
+                          %span Messages
+                      %li
+                        %a.ajax-link{:href => "ajax/gallery_simple.html"}
+                          %i.fa.fa-picture-o
+                          %span Albums
+                      %li
+                        %a.ajax-link{:href => "ajax/calendar.html"}
+                          %i.fa.fa-tasks
+                          %span Tasks
+                      %li
+                        %a{:href => "#"}
+                          %i.fa.fa-cog
+                          %span Settings
+                      %li
+                        %a{:href => "#"}
+                          %i.fa.fa-power-off
+                          %span Logout
+    / End Header
+    / Start Container
+    #main.container-fluid
+      .row
+        = render 'layouts/sidebar'
+        / Start Content
+        #content.col-xs-12.col-sm-10
+          .messages
+            = render 'layouts/messages'
+          = yield
+          /#ajax-content
+        / End Content
+    / End Container
+    / jQuery (necessary for Bootstrap's JavaScript plugins)
+    / <script src="http://code.jquery.com/jquery.js"></script>
+    /%script{:src => "plugins/jquery/jquery-2.1.0.min.js"}
+    /%script{:src => "plugins/jquery-ui/jquery-ui.min.js"}
+    / Include all compiled plugins (below), or include individual files as needed
+    / %script{:src => "plugins/bootstrap/bootstrap.min.js"}
+    / %script{:src => "plugins/justified-gallery/jquery.justifiedgallery.min.js"}
+    / %script{:src => "plugins/tinymce/tinymce.min.js"}
+    / %script{:src => "plugins/tinymce/jquery.tinymce.min.js"}
+    / All functions for this theme + document.ready processing
+    /%script{:src => "js/devoops.js"}

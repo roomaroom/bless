@@ -1,0 +1,21 @@
+class RegistrationsController < Devise::RegistrationsController
+  before_filter :update_sanitized_params, if: :devise_controller?
+
+  def update_sanitized_params
+    devise_parameter_sanitizer.for(:sign_up) do |u|
+      u.permit :email, :password, :password_confirmation
+    end
+  end
+
+  # def edit
+  #   set_facebook_data session['devise.facebook_info']
+  #   current_brother.status = "active"
+  #   @marker = build_markers [current_brother] if current_brother.last_location
+  #   @passion_tags = Brother.passion_counts.sort_by(&:count).map(&:name)
+  # end
+
+  # def update
+  #   set_facebook_data session['devise.facebook_info']
+  # end
+
+end

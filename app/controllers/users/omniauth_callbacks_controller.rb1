@@ -1,0 +1,38 @@
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  def facebook
+    auth = request.env["omniauth.auth"]
+    omniauth_params = request.env['omniauth.params']
+
+    invitation_token = session['devise.invitation_token']
+
+    if invitation_token.present?
+      brother = Brother.find_by_invitation_token invitation_token, true
+
+      if brother.present?
+        brother.update_attribute :provider, auth.provider
+        brother.update_attribute :uid, auth.uid
+
+        sign_in_and_redirect brother, event: :authentication
+      else
+        render text: 'Not invited'
+      end
+    else
+      brother = Brother.find_for_facebook_oauth auth
+
+      if brother.present?
+        sign_in_and_redirect brother, event: :authentication
+      else
+        set_flash_message(:error, :failure, kind: 'Facebook') if is_navigational_format?
+        redirect_to :root
+      end
+    end
+
+    if brother.present?
+      ll = omniauth_params['ll'].try :split, ','
+      brother.update_attribute :last_location, ll if ll.present?
+    end
+
+    auth.info.image.gsub! 'type=square', 'width=9999&height=9999'
+    session['devise.facebook_info'] = auth.info.merge(auth.extra.raw_info.slice('first_name', 'last_name', 'email', 'hometown'))
+  end
+end

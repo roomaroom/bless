@@ -1,0 +1,14 @@
+.row
+  .col-sm-6= f.input :first_name, placeholder: 'e.g. Richard', required: true, error: false
+  .col-sm-6= f.input :last_name, placeholder: 'e.g. Branson', required: true, error: false
+/ .row
+/   .col-sm-6= f.input :email, as: :email, placeholder: 'e.g. richard@virgin.com', required: true, error: false
+/   .col-sm-6= f.input :city, placeholder: 'e.g. Necker Island', label: "City of Residence", required: true, error: false
+/ .row
+/   .col-sm-6
+/     = f.input :profile_photo, as: :file, input_html: { accept: "image/*"  }, required: true
+/     .progress.progress-striped.hidden
+/       .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", role: "progressbar", style: "width: 0%"}
+/         .percent 100%
+/   .col-sm-6
+/     = image_tag @medic.profile_photo.url(:large), id: "brother_profile_photo_preview", class: 'img-circle profile-photo img-responsive'

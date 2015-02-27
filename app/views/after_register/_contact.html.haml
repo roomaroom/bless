@@ -1,0 +1,36 @@
+.form-group
+  %label Mailing Address
+  %abbr{:title => "required"} *
+  %p
+  = f.input :address_street_1, label: 'Street Address', label_html: { class: 'label-block' },
+                      placeholder: "e.g. 120 Campden Hill Road", wrapper: :append, required: true, error: false
+
+  = f.input :address_street_2, label: false, hint: 'Address Line 2', placeholder: "e.g. Suite 240"
+
+.row
+  .col-sm-6
+    = f.input :address_city, label: 'City', placeholder: "e.g. London", required: true, wrapper: :append,
+                        label_html: { class: 'label-block' }, error: false
+
+  .col-sm-6
+    = f.input :address_state, label: 'State / Province / Region', label_html: { class: 'label-block' },
+                        placeholder: "e.g. Kensington", wrapper: :append
+
+.row
+  .col-sm-6= f.input :address_zip, label: 'ZIP / Postal Code', label_html: { class: 'label-block' },
+                      placeholder: "e.g. W8 7AR", required: true, wrapper: :append, error: false
+
+  .col-sm-6= f.input :address_country,  label: 'Country',  label_html: { class: 'label-block' }, as: :country,
+                      priority: ['United States of America', 'Canada', 'United Kingdom'], include_blank: "Please select a Country",
+                      input_html: { data: { geo: 'country' } }, required:true, wrapper: :append, error: false
+
+.form-group
+
+  .row
+    .col-sm-6
+      = f.input :telephone, placeholder: "e.g. +1 123 555 6789", required: true, error: false
+
+    .col-sm-6
+      = f.input :birthday, required: true, as: :string, input_html: { data: { behaviour: 'datepicker' },
+                          value: ( @brother.birthday.strftime('%m/%d/%Y') if @brother.birthday.present?), readonly: '' }, error: false
+

@@ -1,0 +1,19 @@
+- content_for :body_class, "onboarding onboarding-signup"
+
+.container.content.sign-up
+  .row
+    .col-md-8.col-md-push-2
+      .well
+        .progress
+          .progress-bar.progress-bar-info{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "20", :role => "progressbar", :style => "width: 20%"}
+            %span.sr-only 20% Complete
+
+        %h2 Personal Information
+        %hr/
+
+        = render layout: 'form' do |f|
+          = render 'personal', f: f
+          .clearfix
+          %ul.pager
+            %li.pull-right
+              = f.submit "Continue", class: 'btn btn-default continue-button'
