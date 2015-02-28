@@ -53,11 +53,18 @@ group :test do
   gem 'webmock'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
-  gem 'capybara'
-  gem 'capybara-webkit'
+  #gem 'capybara'
+  #gem 'capybara-webkit'
   gem 'timecop'
 end
 
 group :production do
   gem 'unicorn', '~> 4.8.3'
+end
+
+group :development do
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rvm', '~> 0.1.1'
+  gem 'capistrano-bundler', '~> 1.1.3'
+  gem 'capistrano-rails', '~> 1.1.2'
 end
