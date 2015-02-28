@@ -57,3 +57,7 @@ group :test do
   gem 'capybara-webkit'
   gem 'timecop'
 end
+
+group :production do
+  gem 'unicorn', '~> 4.8.3'
+end
