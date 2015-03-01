@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   
-  root 'profiles#index'
+  #root 'profiles#index'
 
   devise_scope :user do
     authenticated :user do
