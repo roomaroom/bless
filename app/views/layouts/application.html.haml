@@ -64,44 +64,45 @@
                     %a.ajax-link{:href => "ajax/page_messages.html"}
                       %i.fa.fa-envelope
                       %span.badge 7
-                  %li.dropdown
-                    %a.dropdown-toggle.account{"data-toggle" => "dropdown", :href => "#"}
-                      .avatar
-                        %img.img-rounded{:alt => "avatar", :src => "/images/img/avatar.jpg"}/
-                      %i.fa.fa-angle-down.pull-right
-                      .user-mini.pull-right
-                        %span.welcome Welcome,
-                        %span Jane Devoops
-                    %ul.dropdown-menu
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-user
-                          %span Profile
-                      %li
-                        %a.ajax-link{:href => "ajax/page_messages.html"}
-                          %i.fa.fa-envelope
-                          %span Messages
-                      %li
-                        %a.ajax-link{:href => "ajax/gallery_simple.html"}
-                          %i.fa.fa-picture-o
-                          %span Albums
-                      %li
-                        %a.ajax-link{:href => "ajax/calendar.html"}
-                          %i.fa.fa-tasks
-                          %span Tasks
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-cog
-                          %span Settings
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-power-off
-                          %span Logout
+                  - if current_user.present?
+                    %li.dropdown
+                      %a.dropdown-toggle.account{"data-toggle" => "dropdown", :href => "#"}
+                        .avatar
+                          %img.img-rounded{:alt => "avatar", :src => "/images/img/avatar.jpg"}/
+                        %i.fa.fa-angle-down.pull-right
+                        .user-mini.pull-right
+                          %span.welcome Welcome,
+                          %span= current_user.email
+                      %ul.dropdown-menu
+                        %li
+                          = link_to current_profile, :method => :get do
+                            %i.fa.fa-user
+                            %span Мій профіль
+                        %li
+                          %a.ajax-link{:href => "ajax/page_messages.html"}
+                            %i.fa.fa-envelope
+                            %span Messages
+                        %li
+                          %a.ajax-link{:href => "ajax/gallery_simple.html"}
+                            %i.fa.fa-picture-o
+                            %span Albums
+                        %li
+                          %a.ajax-link{:href => "ajax/calendar.html"}
+                            %i.fa.fa-tasks
+                            %span Tasks
+                        %li
+                          = link_to edit_profile_path(current_profile), :method => :get do
+                            %i.fa.fa-cog
+                            %span Налаштування
+                        %li
+                          = link_to destroy_user_session_path, :method => :delete do
+                            %i.fa.fa-power-off
+                            %span Вийти
     / End Header
     / Start Container
     #main.container-fluid
       .row
-        /= render 'layouts/sidebar'
+        = render 'layouts/sidebar' if current_user.present?
         / Start Content
         #content.col-xs-12.col-sm-10
           .messages

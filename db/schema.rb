@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141115160557) do
+ActiveRecord::Schema.define(version: 20150807081638) do
+
+  create_table "activities", force: true do |t|
+    t.text     "body"
+    t.integer  "type"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "profile_id", null: false
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "activities", ["item_id"], name: "index_activities_on_item_id"
+  add_index "activities", ["item_type"], name: "index_activities_on_item_type"
+  add_index "activities", ["owner_id"], name: "index_activities_on_owner_id"
+  add_index "activities", ["profile_id"], name: "index_activities_on_profile_id"
 
   create_table "albums", force: true do |t|
     t.string   "name"
@@ -48,6 +64,17 @@ ActiveRecord::Schema.define(version: 20141115160557) do
   add_index "photos", ["album_id"], name: "index_photos_on_album_id"
   add_index "photos", ["profile_id"], name: "index_photos_on_profile_id"
 
+  create_table "posts", force: true do |t|
+    t.text     "title"
+    t.text     "body"
+    t.integer  "profile_id"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["profile_id"], name: "index_posts_on_profile_id"
+
   create_table "privacies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -59,12 +86,25 @@ ActiveRecord::Schema.define(version: 20141115160557) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "status",     default: "welcome"
+    t.string   "city"
+    t.string   "avatar"
+    t.string   "state"
     t.datetime "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+  create_table "shares", force: true do |t|
+    t.integer  "shared_profile_id"
+    t.integer  "shared_activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shares", ["shared_activity_id"], name: "index_shares_on_shared_activity_id"
+  add_index "shares", ["shared_profile_id"], name: "index_shares_on_shared_profile_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

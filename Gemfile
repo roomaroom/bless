@@ -7,7 +7,7 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap-rails-helpers'
-gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-datepicker-rails', require: 'bootstrap-datepicker-rails', git: 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 gem "font-awesome-rails"
 gem 'autoprefixer-rails'
 gem 'uglifier', '>= 1.3.0'
@@ -34,7 +34,7 @@ gem 'omniauth-facebook'
 gem 'devise'
 gem 'faker'
 gem 'wicked'
-gem "rmagick"
+gem "mini_magick"
 gem "carrierwave"
 
 group :development do

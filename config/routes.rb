@@ -12,7 +12,11 @@ Rails.application.routes.draw do
       root 'devise/registrations#new', as: :unauthenticated_root
     end
   end
-  resources :profiles
+
+  resources :profiles  do
+    resources :activities
+  end
+
   resources :friends do
     collection do
       get 'pending'

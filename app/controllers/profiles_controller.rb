@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-    before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def index
     @profiles = Profile.where.not(id: current_profile).page(params[:page]).per(5)
@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
 
   def show
     #@profile = Profile.find(params[:id])
+    @activities = @profile.activities.order('created_at DESC')
   end
 
   def edit
@@ -33,7 +34,7 @@ class ProfilesController < ApplicationController
     end
 
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :status, :terms_of_service, :city,
+      params.require(:profile).permit(:first_name, :avatar, :birthday, :last_name, :status, :terms_of_service, :city,
                                    photos_attributes: [:id, :image, :description])
     end
 end

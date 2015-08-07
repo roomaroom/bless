@@ -6,6 +6,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :last_name
       t.string :status, :default => "welcome"
       t.string :city
+      t.string :avatar
       t.string :state
       t.datetime :birthday
       t.timestamps

@@ -1,6 +1,8 @@
 .row
   .col-sm-6= f.input :first_name, placeholder: 'e.g. Richard', required: true, error: false
   .col-sm-6= f.input :last_name, placeholder: 'e.g. Branson', required: true, error: false
+  .col-sm-6= f.input :birthday,  as: :string, input_html: { data: { provide: 'datepicker' }, class: 'datepicker', value: ( f.object.birthday.strftime('%d/%m/%Y') if f.object.birthday.present?) }
+  .col-sm-6= f.input :avatar
 / .row
 /   .col-sm-6= f.input :email, as: :email, placeholder: 'e.g. richard@virgin.com', required: true, error: false
 /   .col-sm-6= f.input :city, placeholder: 'e.g. Necker Island', label: "City of Residence", required: true, error: false

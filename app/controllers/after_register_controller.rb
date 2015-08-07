@@ -42,7 +42,7 @@ class AfterRegisterController < ApplicationController
 
     def profile_params
       #params[:brother][:remote_profile_photo_url] = nil if params[:brother][:profile_photo].present?
-      params.fetch(:profile, {}).permit(:first_name, :last_name, :status, :terms_of_service, :city, :terms_of_service,
+      params.fetch(:profile, {}).permit(:first_name, :birthday, :avatar, :last_name, :status, :terms_of_service, :city, :terms_of_service,
                                    :profile_photo)
     end
 end

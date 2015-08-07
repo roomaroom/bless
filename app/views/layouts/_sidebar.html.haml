@@ -1,15 +1,17 @@
 #sidebar-left.col-xs-2.col-sm-2
   %ul.nav.main-menu
     %li
-      = link_to "Sign in", new_user_session_path
+      = link_to current_profile, :method => :get do
+        %i.fa.fa-user
+        %span Мій профіль
     %li
-      = link_to profile_path(current_user.profile) do
-        %i.fa.fa-dashboard
-        %span.hidden-xs Моя сторінка
+      = link_to edit_profile_path(current_profile), :method => :get do
+        %i.fa.fa-cog
+        %span Налаштування
     %li
-      = link_to edit_profile_path(current_user.profile) do
-        %i.fa.fa-dashboard
-        %span.hidden-xs Редагувати
+      = link_to destroy_user_session_path, :method => :delete do
+        %i.fa.fa-power-off
+        %span Вийти
     %li.dropdown
       %a.dropdown-toggle{:href => "#"}
         %i.fa.fa-bar-chart-o

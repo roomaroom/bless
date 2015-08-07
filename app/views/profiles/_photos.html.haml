@@ -6,4 +6,4 @@
   = f.fields_for :photos, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } } do |p|
     = p.input :image, label: 'Profile Photo', as: :file, input_html: { accept: "image/*"  }
 
-= f.link_to_add '+ Add a Project', :photos, class: 'btn btn-grey new'
+//= f.link_to_add '+ Add a Project', :photos, class: 'btn btn-grey new'

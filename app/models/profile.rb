@@ -2,7 +2,11 @@ class Profile < ActiveRecord::Base
   belongs_to :user
   has_many :albums
   has_many :photos
+  has_many :posts
+  has_many :activities
+  has_many :shared_activities, :foreign_key => "shared_profile_id", :through => :activity_shares
 
+  mount_uploader :avatar, ImageUploader
   #friendship associations
   has_many :friends, :class_name => "Friend", :foreign_key => "profile_id", :dependent => :destroy
   has_many :accepted_friends, -> { where(status: 1) }, :class_name => "Friend"

@@ -12,6 +12,7 @@
  *= require_tree .
  *= require jquery-ui
  *= require font-awesome
+ *= require bootstrap-datepicker3
  *= require_self
  */
 
@@ -22,7 +23,11 @@
 * @import "leaflet";
 * @import "datepicker";
 */
-@import "admin_lte"
+@import "admin_lte";
 
 
 
+.page-container {
+  padding-top: 15px;
+  padding-bottom:15px;
+}

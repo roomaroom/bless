@@ -1,7 +1,28 @@
-.row.profile
-  .col-lg-7.col-sm-6
+.row.profile.page-container
+  .col-xs-6
     .row
-      .col-lg-6.col-sm-6
-        = image_tag @profile.photos.first.image_url(:large), class: 'img-circle profile-photo img-responsive'
-      .col-lg-6.col-sm-6
-        = @profile.full_name
+      .col-xs-5
+        = image_tag ((@profile.avatar.present? ? @profile.avatar.url(:large) : "company_logo.png"))
+      .col-xs-6
+        %h4= @profile.full_name
+        %table.table
+          - if @profile.birthday.present?
+            %tr
+              %td День народження:
+              %td= @profile.birthday.strftime("%d/%m/%Y")
+          - if @profile.city.present?
+            %tr
+              %td Рiдне мiсто:
+              %td= @profile.city
+    .row.page-container
+      .col-xs-10
+        = simple_form_for([@profile, @post ||= Activity.new]) do |f|
+          = f.input :body, label: false, placeholder: 'Що нового?'
+          = f.submit 'Post', class: "btn -btn -small btn-primary pull-right", id: 'post-submit'
+              
+        - @activities.each do |activity|
+          .row
+            .col-xs-2
+              = image_tag ((activity.owner.avatar.present? ? activity.profile.avatar.url(:medium) : "company_logo.png")) 
+            .col-xs-10
+              = activity.body

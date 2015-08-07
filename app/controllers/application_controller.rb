@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_profile
   protect_from_forgery with: :exception
 
-  before_filter :onboarding_complete
+  #before_filter :onboarding_complete
 
   def onboarding_complete
     return if current_user.nil?
@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_profile
-    current_user.profile
+    current_user.profile if current_user.present?
   end
 end
