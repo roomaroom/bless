@@ -7,4 +7,8 @@ module ApplicationHelper
   def current_profile
     current_user.profile
   end
+
+  def page_header(text)
+    content_for(:page_header) { text.to_s }
+  end
 end

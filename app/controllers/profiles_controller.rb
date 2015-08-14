@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
 
   def show
     #@profile = Profile.find(params[:id])
-    @activities = @profile.activities.order('created_at DESC')
+    @activities = @profile.wall_activities.order('created_at DESC')
   end
 
   def edit

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.5'
+gem 'rails', '4.2.1'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -36,7 +36,12 @@ gem 'faker'
 gem 'wicked'
 gem "mini_magick"
 gem "carrierwave"
-
+gem "the_comments", "~> 2.2.1"
+gem 'haml'               
+gem 'awesome_nested_set' 
+gem "socialization"
+gem "mailboxer"
+gem 'chosen-rails'
 group :development do
   gem 'pry-rails'
   gem 'quiet_assets'

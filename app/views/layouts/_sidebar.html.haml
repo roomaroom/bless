@@ -12,6 +12,8 @@
       = link_to destroy_user_session_path, :method => :delete do
         %i.fa.fa-power-off
         %span Вийти
+    %li
+      = link_to 'Your Conversations', conversations_path
     %li.dropdown
       %a.dropdown-toggle{:href => "#"}
         %i.fa.fa-bar-chart-o

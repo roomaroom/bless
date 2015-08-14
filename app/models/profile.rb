@@ -1,10 +1,15 @@
 class Profile < ActiveRecord::Base
+  #acts_as_follower
+  acts_as_liker
+  acts_as_messageable
+  
   belongs_to :user
   has_many :albums
   has_many :photos
   has_many :posts
   has_many :activities
-  has_many :shared_activities, :foreign_key => "shared_profile_id", :through => :activity_shares
+  has_many :wall_activities, :foreign_key => "wall_id", :class_name => "Activity"
+  has_many :shared_activities, :foreign_key => "shared_profile_id", :through => :activities
 
   mount_uploader :avatar, ImageUploader
   #friendship associations

@@ -107,6 +107,8 @@
         #content.col-xs-12.col-sm-10
           .messages
             = render 'layouts/messages'
+          .page-header
+            %h1= yield :page_header
           = yield
           /#ajax-content
         / End Content

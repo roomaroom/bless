@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include TheComments::ViewToken
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   helper_method :current_profile

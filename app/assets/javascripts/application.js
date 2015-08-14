@@ -15,5 +15,7 @@
 //= require jquery-ui
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require the_comments
 //= require turbolinks
+//= require chosen-jquery
 //= require_tree .

@@ -13,11 +13,12 @@
  *= require jquery-ui
  *= require font-awesome
  *= require bootstrap-datepicker3
+ *= require the_comments
  *= require_self
  */
 
 @import "bootstrap-sprockets";
-
+@import 'chosen';
 @import "bootstrap";
 /* @import "font-awesome";
 * @import "leaflet";
@@ -30,4 +31,11 @@
 .page-container {
   padding-top: 15px;
   padding-bottom:15px;
+}
+
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
