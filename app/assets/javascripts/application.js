@@ -18,6 +18,6 @@
 //= require the_comments
 //= require turbolinks
 //= require chosen-jquery
-//= require jquery-fileupload/basic
+//=require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require_tree .

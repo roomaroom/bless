@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   #root 'profiles#index'
 
   devise_scope :user do
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   #   end
   # end
   resources :messages
+  resources :photos
   resources :conversations do
     member do
       post :reply

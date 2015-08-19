@@ -12,6 +12,13 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.create(params[:painting])
+    #binding.pry
+    @photo = Photo.create(photo_params)
+  end
+
+  private
+
+  def photo_params
+    params.require(:photo).permit(:image)
   end
 end

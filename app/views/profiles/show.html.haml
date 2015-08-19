@@ -17,28 +17,39 @@
         %button.btn.-btn.-btn-ghost.-small.-main-color{"data-target" => "#showMessage", "data-toggle" => "modal", :type => "button"}  Надіслати Повідомлення
     .row.page-container
       .col-xs-10
+        #paintings
         = simple_form_for([@profile, @post||= Post.new]) do |f|
           = f.input :body, label: false, placeholder: 'Що нового?'
           = f.submit 'Post', class: "btn -btn -small btn-primary pull-right", id: 'post-submit'
-              
+
+        = form_for(Photo.new) do |f|
+          = f.file_field :image, multiple: true, name: "photo[image]"
+          = f.submit 'add image', class: "btn -btn -small btn-primary pull-right"
+
         - @activities.each do |activity|
           .row
             .col-xs-2
-              = image_tag ((activity.wall.avatar.present? ? activity.wall.avatar.url(:medium) : "company_logo.png")) 
+              = image_tag ((activity.wall.avatar.present? ? activity.wall.avatar.url(:medium) : "company_logo.png"))
               - if activity.shared?
-                = image_tag ((activity.profile.avatar.present? ? activity.profile.avatar.url(:medium) : "company_logo.png")) 
+                = image_tag ((activity.profile.avatar.present? ? activity.profile.avatar.url(:medium) : "company_logo.png"))
             .col-xs-10.well
               = activity.item.andand.body
               %span.like-count-text= activity.count_likes
               %span.like-count-text= activity.count_shared
-              
+
               /= link_to('Like', like_profile_activity_path(id: activity.id, profile_id: current_profile.id) )
               - if current_profile.likes?(activity)
                 .like
                   = link_to('Unlike', unlike_profile_activity_path(id: activity.id, profile_id: current_profile.id) )
               - else
-                .like{class: activity.id} 
+                .like{class: activity.id}
                   .unlike= link_to('Like', like_profile_activity_path(id: activity.id, profile_id: current_profile.id) )
-              = link_to('Shared', shared_profile_activity_path(id: activity.id, profile_id: @profile.id) )    
+              = link_to('Shared', shared_profile_activity_path(id: activity.id, profile_id: @profile.id) )
               = render partial: 'the_comments/tree', locals: { commentable: activity, comments_tree: activity.comments }
 = render 'messages/new_modal'
+%script#template-upload{:type => "text/x-tmpl"}
+  :cdata
+    <div class="upload">
+    {%=o.name%}
+    <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
