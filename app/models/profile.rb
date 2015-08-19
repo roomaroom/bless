@@ -1,17 +1,22 @@
 class Profile < ActiveRecord::Base
   #acts_as_follower
   acts_as_liker
-  acts_as_messageable
+  #acts_as_messageable
   
   belongs_to :user
   has_many :albums
-  has_many :photos
+  has_many :photos, as: :imageable, dependent: :destroy
   has_many :posts
   has_many :activities
   has_many :wall_activities, :foreign_key => "wall_id", :class_name => "Activity"
   has_many :shared_activities, :foreign_key => "shared_profile_id", :through => :activities
 
   mount_uploader :avatar, ImageUploader
+
+  # Messages
+  has_many :sent_conversations,     :class_name => 'Conversation', :foreign_key => 'sender_id'
+  has_many :received_conversations, :class_name => 'Conversation', :foreign_key => 'receiver_id'
+
   #friendship associations
   has_many :friends, :class_name => "Friend", :foreign_key => "profile_id", :dependent => :destroy
   has_many :accepted_friends, -> { where(status: 1) }, :class_name => "Friend"
@@ -28,4 +33,7 @@ class Profile < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def conversations
+    sent_conversations + received_conversations
+  end
 end

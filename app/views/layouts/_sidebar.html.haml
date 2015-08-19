@@ -5,6 +5,10 @@
         %i.fa.fa-user
         %span Мій профіль
     %li
+      = link_to  conversations_path  do
+        %i.fa.fa-envelope
+        %span Повідомлення
+    %li
       = link_to edit_profile_path(current_profile), :method => :get do
         %i.fa.fa-cog
         %span Налаштування
@@ -12,8 +16,6 @@
       = link_to destroy_user_session_path, :method => :delete do
         %i.fa.fa-power-off
         %span Вийти
-    %li
-      = link_to 'Your Conversations', conversations_path
     %li.dropdown
       %a.dropdown-toggle{:href => "#"}
         %i.fa.fa-bar-chart-o

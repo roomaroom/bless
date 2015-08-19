@@ -40,8 +40,9 @@ gem "the_comments", "~> 2.2.1"
 gem 'haml'               
 gem 'awesome_nested_set' 
 gem "socialization"
-gem "mailboxer"
 gem 'chosen-rails'
+gem "jquery-fileupload-rails"
+
 group :development do
   gem 'pry-rails'
   gem 'quiet_assets'

@@ -1,11 +1,12 @@
 class CreateMessages < ActiveRecord::Migration
   def change
     create_table :messages do |t|
+      t.references :conversation, index: true
+      t.references :profile, index: true
+      t.boolean :sender_deleted, :receiver_deleted, :default => 0
       t.text :body
-      t.boolean :read, default: false
-      t.integer :sender_id
-      t.integer :receiver_id 
-      t.timestamps null: false
+      t.datetime :read_at
+      t.timestamps
     end
   end
 end

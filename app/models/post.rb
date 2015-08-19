@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :profile
   belongs_to :wall, :foreign_key => "wall_id", :class_name => "Profile"
+  has_many :post_images
+  has_many :photos, through: :post_images
 
   mount_uploader :avatar, ImageUploader
 

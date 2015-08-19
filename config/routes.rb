@@ -31,17 +31,24 @@ Rails.application.routes.draw do
   end
 
   resources :after_register
-  resources :conversations, only: [:index, :show, :destroy] do
+  # resources :conversations, only: [:index, :show, :destroy] do
+  #   member do
+  #     post :reply
+  #     post :restore
+  #     post :mark_as_read
+  #   end
+  #   collection do
+  #     delete :empty_trash
+  #   end
+  # end
+  resources :messages
+  resources :conversations do
     member do
       post :reply
       post :restore
       post :mark_as_read
     end
-    collection do
-      delete :empty_trash
-    end
   end
-  resources :messages, only: [:new, :create]
   concern   :user_comments,  TheComments::UserRoutes.new
   concern   :admin_comments, TheComments::AdminRoutes.new
   resources :comments, concerns:  [:user_comments, :admin_comments] do

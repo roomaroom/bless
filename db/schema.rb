@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814144860) do
+ActiveRecord::Schema.define(version: 20150819140810) do
 
   create_table "activities", force: :cascade do |t|
     t.text     "body"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 20150814144860) do
     t.datetime "updated_at"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "conversations", ["receiver_id"], name: "index_conversations_on_receiver_id"
+  add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id"
+
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
     t.integer  "follower_id"
@@ -106,52 +116,6 @@ ActiveRecord::Schema.define(version: 20150814144860) do
   add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables"
   add_index "likes", ["liker_id", "liker_type"], name: "fk_likes"
 
-  create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
-    t.integer "unsubscriber_id"
-    t.string  "unsubscriber_type"
-    t.integer "conversation_id"
-  end
-
-  create_table "mailboxer_conversations", force: :cascade do |t|
-    t.string   "subject",    default: ""
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "mailboxer_notifications", force: :cascade do |t|
-    t.string   "type"
-    t.text     "body"
-    t.string   "subject",              default: ""
-    t.integer  "sender_id"
-    t.string   "sender_type"
-    t.integer  "conversation_id"
-    t.boolean  "draft",                default: false
-    t.string   "notification_code"
-    t.integer  "notified_object_id"
-    t.string   "notified_object_type"
-    t.string   "attachment"
-    t.datetime "updated_at",                           null: false
-    t.datetime "created_at",                           null: false
-    t.boolean  "global",               default: false
-    t.datetime "expires"
-  end
-
-  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id"
-
-  create_table "mailboxer_receipts", force: :cascade do |t|
-    t.integer  "receiver_id"
-    t.string   "receiver_type"
-    t.integer  "notification_id",                            null: false
-    t.boolean  "is_read",                    default: false
-    t.boolean  "trashed",                    default: false
-    t.boolean  "deleted",                    default: false
-    t.string   "mailbox_type",    limit: 25
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-  end
-
-  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
-
   create_table "mentions", force: :cascade do |t|
     t.string   "mentioner_type"
     t.integer  "mentioner_id"
@@ -164,18 +128,23 @@ ActiveRecord::Schema.define(version: 20150814144860) do
   add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions"
 
   create_table "messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "profile_id"
+    t.boolean  "sender_deleted",   default: false
+    t.boolean  "receiver_deleted", default: false
     t.text     "body"
-    t.boolean  "read",        default: false
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "read_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+  add_index "messages", ["profile_id"], name: "index_messages_on_profile_id"
 
   create_table "photos", force: :cascade do |t|
     t.text     "description"
-    t.integer  "profile_id"
-    t.integer  "album_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
@@ -184,8 +153,17 @@ ActiveRecord::Schema.define(version: 20150814144860) do
     t.integer  "deleted_comments_count",   default: 0
   end
 
-  add_index "photos", ["album_id"], name: "index_photos_on_album_id"
-  add_index "photos", ["profile_id"], name: "index_photos_on_profile_id"
+  add_index "photos", ["imageable_id"], name: "index_photos_on_imageable_id"
+
+  create_table "post_images", force: :cascade do |t|
+    t.integer  "photo_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_images", ["photo_id"], name: "index_post_images_on_photo_id"
+  add_index "post_images", ["post_id"], name: "index_post_images_on_post_id"
 
   create_table "posts", force: :cascade do |t|
     t.text     "title"

@@ -14,6 +14,7 @@
             %tr
               %td Рiдне мiсто:
               %td= @profile.city
+        %button.btn.-btn.-btn-ghost.-small.-main-color{"data-target" => "#showMessage", "data-toggle" => "modal", :type => "button"}  Надіслати Повідомлення
     .row.page-container
       .col-xs-10
         = simple_form_for([@profile, @post||= Post.new]) do |f|
@@ -40,3 +41,4 @@
                   .unlike= link_to('Like', like_profile_activity_path(id: activity.id, profile_id: current_profile.id) )
               = link_to('Shared', shared_profile_activity_path(id: activity.id, profile_id: @profile.id) )    
               = render partial: 'the_comments/tree', locals: { commentable: activity, comments_tree: activity.comments }
+= render 'messages/new_modal'
