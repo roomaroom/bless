@@ -394,6 +394,3 @@ DEPENDENCIES
   vcr
   webmock
   wicked
-
-BUNDLED WITH
-   1.10.2

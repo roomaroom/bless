@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :update_quote]
 
   def index
     @profiles = Profile.where.not(id: current_profile).page(params[:page]).per(5)
@@ -8,6 +8,10 @@ class ProfilesController < ApplicationController
   def show
     #@profile = Profile.find(params[:id])
     @activities = @profile.wall_activities.order('created_at DESC')
+    @post= Post.new 
+    #@post_images = @post.post_images.build
+    @photos = @post.photos.build
+    #@photo = @post_images.build_photo
   end
 
   def edit
@@ -25,6 +29,11 @@ class ProfilesController < ApplicationController
         #format.json { render json: @museum.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_quote
+    @profile.update_attribute(:quote, params[:quote])
+    redirect_to :back
   end
 
   private

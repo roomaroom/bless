@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   end
 
   resources :profiles  do
-    resources :posts
+    member do
+      post 'update_quote'
+    end
+
+    resources :posts 
     resources :activities do
       member do
         get 'like'
@@ -43,6 +47,7 @@ Rails.application.routes.draw do
   # end
   resources :messages
   resources :photos
+  resources :albums
   resources :conversations do
     member do
       post :reply

@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   def save_post
     if @post.save
+      @post.photos << Photo.where(:id => params[:photos_ids].first.split(',')) if params[:photos_ids].present?
       redirect_to :back
     else
     end
@@ -29,7 +30,8 @@ class PostsController < ApplicationController
 
   def post_params
     post_params = params[:post]
-    post_params ? post_params.permit(:body, :created_at) : {}
+    post_params ? post_params.permit(:body, :created_at, post_images: [:id, :post_id,
+                                      :photo_id,],  photos_attributes: [:id, :image]) : {}
   end
 
 

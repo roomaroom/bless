@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @paintings = Painting.all
+    @photo = Photo.all
   end
 
   def show
@@ -19,6 +19,6 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :imageable_id, :imageable_type)
   end
 end

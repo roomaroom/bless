@@ -4,6 +4,9 @@ class Post < ActiveRecord::Base
   has_many :post_images
   has_many :photos, through: :post_images
 
+  accepts_nested_attributes_for :post_images
+  accepts_nested_attributes_for :photos
+
   mount_uploader :avatar, ImageUploader
 
   after_create :create_activity

@@ -5,6 +5,9 @@
         = image_tag ((@profile.avatar.present? ? @profile.avatar.url(:large) : "company_logo.png"))
       .col-xs-6
         %h4= @profile.full_name
+        = @profile.quote
+        %button.btn.-btn.-btn-ghost.-small.-main-color{"data-target" => "#Quote", "data-toggle" => "modal", :type => "button"}  Змінити
+        /= best_in_place @profile, :quote, :as => :input, :nil => "Click me to add content!", :ok_button => 'Save', :cancel_button => 'Cancel'
         %table.table
           - if @profile.birthday.present?
             %tr
@@ -18,13 +21,16 @@
     .row.page-container
       .col-xs-10
         #paintings
-        = simple_form_for([@profile, @post||= Post.new]) do |f|
+        = simple_form_for([@profile, @post]) do |f|
           = f.input :body, label: false, placeholder: 'Що нового?'
+          = hidden_field_tag 'photos_ids[]'
           = f.submit 'Post', class: "btn -btn -small btn-primary pull-right", id: 'post-submit'
-
+          /= f.fields_for :post_images do |post_image|
+          /= post_image.input :post_id
+          / = f.fields_for :photos do |p|
+          /   = p.input :image, as: :file, input_html: { multiple: true }
         = form_for(Photo.new) do |f|
           = f.file_field :image, multiple: true, name: "photo[image]"
-          = f.submit 'add image', class: "btn -btn -small btn-primary pull-right"
 
         - @activities.each do |activity|
           .row
@@ -47,6 +53,7 @@
               = link_to('Shared', shared_profile_activity_path(id: activity.id, profile_id: @profile.id) )
               = render partial: 'the_comments/tree', locals: { commentable: activity, comments_tree: activity.comments }
 = render 'messages/new_modal'
+= render 'profiles/quote'
 %script#template-upload{:type => "text/x-tmpl"}
   :cdata
     <div class="upload">

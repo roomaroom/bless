@@ -1,0 +1,14 @@
+.title_wrap
+  .container
+    .row
+      .col-md-10.col-sm-9.col-xs-8
+        %h1 Sign Up
+
+.container.content
+  = simple_form_for(@album, html: { class: 'form-vertical' }) do |f|
+    = f.error_notification
+    = f.input :name, required: true, autofocus: true
+    = f.input :description
+    = f.hidden_field :profile_id,  :value => current_profile.id 
+    = f.button :submit, 'Створити', class: 'btn-primary'
+

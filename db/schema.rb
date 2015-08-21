@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819140810) do
+ActiveRecord::Schema.define(version: 20150821082458) do
 
   create_table "activities", force: :cascade do |t|
     t.text     "body"
@@ -195,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150819140810) do
     t.datetime "birthday"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "testimony"
+    t.string   "quote"
   end
 
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"

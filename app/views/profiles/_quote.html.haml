@@ -1,0 +1,15 @@
+#Quote.modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4.modal-title Змінити Статус
+      .modal-body
+        = form_tag update_quote_profile_path(@profile) do
+          .form-group
+            = text_area_tag 'quote', @profile.quote, cols: 3, class: 'form-control', required: true
+            = check_box_tag 'show_friend', 'yes'
+    
+          .form-group
+            = submit_tag 'Надіслати', class: 'btn btn-primary'

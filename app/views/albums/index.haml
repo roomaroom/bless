@@ -1,0 +1,8 @@
+%h1 Friends#index
+.row
+  .col-sm-12
+    - @albums.each do |album|
+      .col-sm-4
+        .album-name= link_to album.name, album
+    
+= link_to "Створити альбом", new_album_path

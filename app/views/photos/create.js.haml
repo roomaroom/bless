@@ -1,1 +1,4 @@
-$("#paintings").append("sd");
+$("#paintings").append("#{escape_javascript(render(@photo))}");
+var id = $("#photos_ids_").val() + ",";
+$("#photos_ids_").val(id + "#{@photo.id}");
+
