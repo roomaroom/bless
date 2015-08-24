@@ -1,0 +1,8 @@
+/%h1 Friends#index
+.row
+  .col-sm-12
+    - @songs.each do |song|
+      .col-sm-4
+        = audio_tag(song.audio, controls: true)
+
+= link_to "Додати музику", new_song_path

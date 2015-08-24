@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @page.name
+%p
+  %b Description:
+  = @page.description
+%p
+  %b Setting:
+  = @page.setting
+%p
+  %b Type:
+  = @page.type
+
+= link_to 'Edit', edit_page_path(@page)
+\|
+= link_to 'Back', pages_path
