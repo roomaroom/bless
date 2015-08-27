@@ -1,27 +1,32 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
-
+lock '3.4.0'
 set :application, 'bless'
 set :repo_url, 'git@github.com:roomaroom/bless.git'
-
+set :shared_path, "/root/bless/shared"
+set :branch, 'master'
+set :scm, :git
+# set :format, :pretty
+# set :pty, true
+set :default_stage, 'production'
+#set :use_sudo, false
+#set :deploy_via, :copy
+set :deploy_via, :remote_cache
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+#set :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
-set :username, 'deploy'
-# Имя приложения
-set :application, 'bless'
-# Путь для деплоя
-set :deploy_to, "/home/#{fetch(:username)}/#{fetch(:application)}"
-set :log_level, :info
-set :linked_files, %w{config/secrets.yml config/database.yml}
+set :deploy_to, '/root/bless'
+
+#set :deploy_to, "/root/bless"
+#set :log_level, :info
+set :linked_files, %w(config/database.yml config/secrets.yml)
 # Default value for :scm is :git
 # set :scm, :git
-set :linked_dirs, %w{public/upload}
+
+set :linked_dirs, %w{ public/uploads}
 # Default value for :format is :pretty
 # set :format, :pretty
-
+set :port, 2225
 # Default value for :log_level is :debug
 # set :log_level, :debug
 
@@ -49,7 +54,7 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
-
+  #before :finishing, 'linked_files:upload'
   after :publishing, :restart
 
   after :restart, :clear_cache do
@@ -61,42 +66,4 @@ namespace :deploy do
     end
   end
 
-end
-namespace :nginx do
-  desc 'Создание симлинка в /etc/nginx/conf.d на nginx.conf приложения'
-  task :append_config do
-    on roles :all do
-      sudo :ln, "-fs #{shared_path}/config/nginx.conf /etc/nginx/conf.d/#{fetch(:application)}.conf"
-    end
-  end
-  desc 'Релоад nginx'
-  task :reload do
-    on roles :all do
-      sudo :service, :nginx, :reload
-    end
-  end
-  desc 'Рестарт nginx'
-  task :restart do
-    on roles :all do
-      sudo :service, :nginx, :restart
-    end
-  end
-  after :append_config, :restart
-end
-set :unicorn_config, "#{shared_path}/config/unicorn.rb"
-set :unicorn_pid, "#{shared_path}/run/unicorn.pid"
-
-namespace :application do
-  desc 'Запуск Unicorn'
-  task :start do
-    on roles(:app) do
-      execute "cd #{release_path} && ~/.rvm/bin/rvm default do bundle exec unicorn_rails -c #{fetch(:unicorn_config)} -E #{fetch(:rails_env)} -D"
-    end
-  end
-  desc 'Завершение Unicorn'
-  task :stop do
-    on roles(:app) do
-      execute "if [ -f #{fetch(:unicorn_pid)} ] && [ -e /proc/$(cat #{fetch(:unicorn_pid)}) ]; then kill -9 `cat #{fetch(:unicorn_pid)}`; fi"
-    end
-  end
 end
