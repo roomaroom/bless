@@ -32,119 +32,119 @@
       = link_to destroy_user_session_path, :method => :delete do
         %i.fa.fa-power-off
         %span Вийти
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-bar-chart-o
-        %span.hidden-xs Charts
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/charts_xcharts.html"} xCharts
-        %li
-          %a.ajax-link{:href => "ajax/charts_flot.html"} Flot Charts
-        %li
-          %a.ajax-link{:href => "ajax/charts_google.html"} Google Charts
-        %li
-          %a.ajax-link{:href => "ajax/charts_morris.html"} Morris Charts
-        %li
-          %a.ajax-link{:href => "ajax/charts_coindesk.html"} CoinDesk realtime
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-table
-        %span.hidden-xs Tables
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/tables_simple.html"} Simple Tables
-        %li
-          %a.ajax-link{:href => "ajax/tables_datatables.html"} Data Tables
-        %li
-          %a.ajax-link{:href => "ajax/tables_beauty.html"} Beauty Tables
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-pencil-square-o
-        %span.hidden-xs Forms
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/forms_elements.html"} Elements
-        %li
-          %a.ajax-link{:href => "ajax/forms_layouts.html"} Layouts
-        %li
-          %a.ajax-link{:href => "ajax/forms_file_uploader.html"} File Uploader
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-desktop
-        %span.hidden-xs UI Elements
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/ui_grid.html"} Grid
-        %li
-          %a.ajax-link{:href => "ajax/ui_buttons.html"} Buttons
-        %li
-          %a.ajax-link{:href => "ajax/ui_progressbars.html"} Progress Bars
-        %li
-          %a.ajax-link{:href => "ajax/ui_jquery-ui.html"} Jquery UI
-        %li
-          %a.ajax-link{:href => "ajax/ui_icons.html"} Icons
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-list
-        %span.hidden-xs Pages
-      %ul.dropdown-menu
-        %li
-          %a{:href => "ajax/page_login.html"} Login
-        %li
-          %a{:href => "ajax/page_register.html"} Register
-        %li
-          %a#locked-screen.submenu{:href => "ajax/page_locked.html"} Locked Screen
-        %li
-          %a.ajax-link{:href => "ajax/page_contacts.html"} Contacts
-        %li
-          %a.ajax-link{:href => "ajax/page_feed.html"} Feed
-        %li
-          %a.ajax-link.add-full{:href => "ajax/page_messages.html"} Messages
-        %li
-          %a.ajax-link{:href => "ajax/page_pricing.html"} Pricing
-        %li
-          %a.ajax-link{:href => "ajax/page_invoice.html"} Invoice
-        %li
-          %a.ajax-link{:href => "ajax/page_search.html"} Search Results
-        %li
-          %a.ajax-link{:href => "ajax/page_404.html"} Error 404
-        %li
-          %a{:href => "ajax/page_500.html"} Error 500
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-map-marker
-        %span.hidden-xs Maps
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/maps.html"} OpenStreetMap
-        %li
-          %a.ajax-link{:href => "ajax/map_fullscreen.html"} Fullscreen map
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-picture-o
-        %span.hidden-xs Gallery
-      %ul.dropdown-menu
-        %li
-          %a.ajax-link{:href => "ajax/gallery_simple.html"} Simple Gallery
-        %li
-          %a.ajax-link{:href => "ajax/gallery_flickr.html"} Flickr Gallery
-    %li
-      %a.ajax-link{:href => "ajax/typography.html"}
-        %i.fa.fa-font
-        %span.hidden-xs Typography
-    %li
-      %a.ajax-link{:href => "ajax/calendar.html"}
-        %i.fa.fa-calendar
-        %span.hidden-xs Calendar
-    %li.dropdown
-      %a.dropdown-toggle{:href => "#"}
-        %i.fa.fa-picture-o
-        %span.hidden-xs Multilevel menu
-      %ul.dropdown-menu
-        %li
-          %a{:href => "#"} First level menu
-        %li
-          %a{:href => "#"} First level menu
-        %li.dropdown
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-bar-chart-o
+    /     %span.hidden-xs Charts
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/charts_xcharts.html"} xCharts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/charts_flot.html"} Flot Charts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/charts_google.html"} Google Charts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/charts_morris.html"} Morris Charts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/charts_coindesk.html"} CoinDesk realtime
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-table
+    /     %span.hidden-xs Tables
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/tables_simple.html"} Simple Tables
+    /     %li
+    /       %a.ajax-link{:href => "ajax/tables_datatables.html"} Data Tables
+    /     %li
+    /       %a.ajax-link{:href => "ajax/tables_beauty.html"} Beauty Tables
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-pencil-square-o
+    /     %span.hidden-xs Forms
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/forms_elements.html"} Elements
+    /     %li
+    /       %a.ajax-link{:href => "ajax/forms_layouts.html"} Layouts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/forms_file_uploader.html"} File Uploader
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-desktop
+    /     %span.hidden-xs UI Elements
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/ui_grid.html"} Grid
+    /     %li
+    /       %a.ajax-link{:href => "ajax/ui_buttons.html"} Buttons
+    /     %li
+    /       %a.ajax-link{:href => "ajax/ui_progressbars.html"} Progress Bars
+    /     %li
+    /       %a.ajax-link{:href => "ajax/ui_jquery-ui.html"} Jquery UI
+    /     %li
+    /       %a.ajax-link{:href => "ajax/ui_icons.html"} Icons
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-list
+    /     %span.hidden-xs Pages
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a{:href => "ajax/page_login.html"} Login
+    /     %li
+    /       %a{:href => "ajax/page_register.html"} Register
+    /     %li
+    /       %a#locked-screen.submenu{:href => "ajax/page_locked.html"} Locked Screen
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_contacts.html"} Contacts
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_feed.html"} Feed
+    /     %li
+    /       %a.ajax-link.add-full{:href => "ajax/page_messages.html"} Messages
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_pricing.html"} Pricing
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_invoice.html"} Invoice
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_search.html"} Search Results
+    /     %li
+    /       %a.ajax-link{:href => "ajax/page_404.html"} Error 404
+    /     %li
+    /       %a{:href => "ajax/page_500.html"} Error 500
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-map-marker
+    /     %span.hidden-xs Maps
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/maps.html"} OpenStreetMap
+    /     %li
+    /       %a.ajax-link{:href => "ajax/map_fullscreen.html"} Fullscreen map
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-picture-o
+    /     %span.hidden-xs Gallery
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a.ajax-link{:href => "ajax/gallery_simple.html"} Simple Gallery
+    /     %li
+    /       %a.ajax-link{:href => "ajax/gallery_flickr.html"} Flickr Gallery
+    / %li
+    /   %a.ajax-link{:href => "ajax/typography.html"}
+    /     %i.fa.fa-font
+    /     %span.hidden-xs Typography
+    / %li
+    /   %a.ajax-link{:href => "ajax/calendar.html"}
+    /     %i.fa.fa-calendar
+    /     %span.hidden-xs Calendar
+    / %li.dropdown
+    /   %a.dropdown-toggle{:href => "#"}
+    /     %i.fa.fa-picture-o
+    /     %span.hidden-xs Multilevel menu
+    /   %ul.dropdown-menu
+    /     %li
+    /       %a{:href => "#"} First level menu
+    /     %li
+    /       %a{:href => "#"} First level menu
+    /     %li.dropdown
 
