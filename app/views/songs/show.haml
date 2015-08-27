@@ -1,0 +1,13 @@
+= form_for(Photo.new) do |f|
+  = f.file_field :image, multiple: true, name: "photo[image]"
+  = f.hidden_field :imageable_id, :value => @album.id 
+  = f.hidden_field :imageable_type, :value => "Album" 
+#paintings
+- @photos.each do |photo|
+  = image_tag(photo.image_url(:medium)) if photo.image?
+%script#template-upload{:type => "text/x-tmpl"}
+  :cdata
+    <div class="upload">
+    {%=o.name%}
+    <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821082458) do
+ActiveRecord::Schema.define(version: 20150823143743) do
 
   create_table "activities", force: :cascade do |t|
     t.text     "body"
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(version: 20150821082458) do
   add_index "friends", ["friend_id"], name: "index_friends_on_friend_id"
   add_index "friends", ["profile_id"], name: "index_friends_on_profile_id"
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "setting"
+    t.integer  "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.string   "liker_type"
     t.integer  "liker_id"
@@ -140,6 +149,15 @@ ActiveRecord::Schema.define(version: 20150821082458) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["profile_id"], name: "index_messages_on_profile_id"
+
+  create_table "pages", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "setting"
+    t.integer  "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "photos", force: :cascade do |t|
     t.text     "description"
@@ -184,6 +202,38 @@ ActiveRecord::Schema.define(version: 20150821082458) do
     t.datetime "updated_at"
   end
 
+  create_table "profile_groups", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "group_id"
+    t.integer  "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profile_groups", ["group_id"], name: "index_profile_groups_on_group_id"
+  add_index "profile_groups", ["profile_id"], name: "index_profile_groups_on_profile_id"
+
+  create_table "profile_pages", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "page_id"
+    t.integer  "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profile_pages", ["page_id"], name: "index_profile_pages_on_page_id"
+  add_index "profile_pages", ["profile_id"], name: "index_profile_pages_on_profile_id"
+
+  create_table "profile_songs", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profile_songs", ["profile_id"], name: "index_profile_songs_on_profile_id"
+  add_index "profile_songs", ["song_id"], name: "index_profile_songs_on_song_id"
+
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "first_name"
@@ -210,6 +260,13 @@ ActiveRecord::Schema.define(version: 20150821082458) do
 
   add_index "shares", ["shared_activity_id"], name: "index_shares_on_shared_activity_id"
   add_index "shares", ["shared_profile_id"], name: "index_shares_on_shared_profile_id"
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "audio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                       default: "", null: false

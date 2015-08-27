@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :groups
+  resources :pages
   devise_for :users
 
   #root 'profiles#index'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
       post 'update_quote'
     end
 
-    resources :posts 
+    resources :posts
     resources :activities do
       member do
         get 'like'
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :photos
   resources :albums
+  resources :songs
   resources :conversations do
     member do
       post :reply

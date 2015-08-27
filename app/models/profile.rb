@@ -2,7 +2,7 @@ class Profile < ActiveRecord::Base
   #acts_as_follower
   acts_as_liker
   #acts_as_messageable
-  
+
   belongs_to :user
   has_many :albums
   has_many :photos, as: :imageable, dependent: :destroy
@@ -10,6 +10,12 @@ class Profile < ActiveRecord::Base
   has_many :activities
   has_many :wall_activities, :foreign_key => "wall_id", :class_name => "Activity"
   has_many :shared_activities, :foreign_key => "shared_profile_id", :through => :activities
+  has_many :profile_songs
+  has_many :songs, through: :profile_songs
+  has_many :profile_pages
+  has_many :pages, through: :profile_pages
+  has_many :profile_groups
+  has_many :groups, through: :profile_groups
 
   mount_uploader :avatar, ImageUploader
 
