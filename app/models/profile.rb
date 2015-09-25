@@ -23,17 +23,21 @@ class Profile < ActiveRecord::Base
   has_many :sent_conversations,     :class_name => 'Conversation', :foreign_key => 'sender_id'
   has_many :received_conversations, :class_name => 'Conversation', :foreign_key => 'receiver_id'
 
-  #friendship associations
-  has_many :friends, :class_name => "Friend", :foreign_key => "profile_id", :dependent => :destroy
-  has_many :accepted_friends, -> { where(status: 1) }, :class_name => "Friend"
-  has_many :pending_friends,  -> { where(status: 0) }, :class_name => "Friend"
-  #has_many :friends_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', true], :dependent => :destroy
-  #has_many :friendss_not_initiated_by_me, :class_name => "Friendship", :foreign_key => "user_id", :conditions => ['initiator = ?', false], :dependent => :destroy
-  #has_many :occurances_as_friend, :class_name => "Friendship", :foreign_key => "friend_id", :dependent => :destroy
+  has_many :friends_by_me, -> { where(status: 1) }, class_name: "Friend", foreign_key: "profile_id"
+  has_many :friends_for_me, -> { where(status: 1) }, class_name: "Friend", foreign_key: "friend_id"
+  has_many :friendships_by_me, through: :friends_by_me, source: :friend
+  has_many :friendships_for_me, through: :friends_for_me, source: :profile
 
-
+  has_many :pending_friends_by_me, -> { where(status: 0) }, class_name: "Friend", foreign_key: "profile_id"
+  has_many :pending_friends_for_me, -> { where(status: 0) }, class_name: "Friend", foreign_key: "friend_id"
+  has_many :pending_friendships_by_me, through: :pending_friends_by_me, source: :friend
+  has_many :pending_friendships_for_me, through: :pending_friends_for_me, source: :profile
 
   accepts_nested_attributes_for :photos, allow_destroy: true
+
+  def friends
+    friends_by_me + friends_for_me
+  end
 
   def full_name
     "#{first_name} #{last_name}"
